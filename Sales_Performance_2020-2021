@@ -1,0 +1,14 @@
+SELECT 
+o.Date as order_date,
+ct.CategoryName as category_name,
+p.ProdName as product_name,
+p.Price as product_price,
+o.Quantity as order_qty,
+p.Price*o.Quantity AS total_sales,
+c.CustomerEmail as cust_email,
+c.CustomerCity as cust_city,
+FROM `muamalat-bi-analyst.project.customers` as c 
+JOIN `muamalat-bi-analyst.project.orders` as o on c.CustomerID=o.CustomerID
+JOIN `muamalat-bi-analyst.project.product` as p on o.ProdNumber = p.ProdNumber
+JOIN `muamalat-bi-analyst.project.category` as ct on p.Category = ct.CategoryID
+ORDER BY o.Date ASC
